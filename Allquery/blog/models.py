@@ -1,7 +1,5 @@
 from django.db import models
 
-class Date(models.Model):
-    date = models.DateField()
 
  
 class BaseIntro(models.Model):
@@ -16,9 +14,12 @@ class BaseIntro(models.Model):
         return self.title
 
 class RingTone(models.Model):
-    time = models.ForeignKey(Date, on_delete=models.CASCADE, null=True)
+    time = models.DateField(null=True)
     intro = models.ManyToManyField(BaseIntro) 
     customer = models.FileField(upload_to='blog')
+
+    
+
 
 
 # Create your models here.

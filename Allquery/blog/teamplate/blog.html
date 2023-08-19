@@ -9,23 +9,23 @@
             {% csrf_token %}
             <div class="row">
                 <label class="form-label">Title:</label>
-                <input class="form-control" type="text" name="title">
+                <input class="form-control" type="text" name="title" required>
             </div>
             <div>
                 <label class="form-label">
                     Song Name
                 </label>
-                <input type="text" class="form-control" name="song">
+                <input type="text" class="form-control" name="song" required>
             </div>
             <div>
                 <label class="form-label">Upload By</label>
-                <input type="text" class="form-control" name="upload_by">
+                <input type="text" class="form-control" name="upload_by" required>
             </div>
             <div>
                 <label class="form-label">
                     Audio
                 </label>
-                <input type="file" accept="audio/*" class="form-control">
+                <input type="file" accept="audio/*" class="form-control"required>
             </div>
             <div>
                 <button class="btn btn-primary" type="submit">Submit</button>

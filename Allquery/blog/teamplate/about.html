@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td,
+    #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+         background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+ 
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+</style>
+
+<div style="background-color: darkgray;">
+    <div>
+        <div class="text-center">
+            <h2>About Page</h2>
+        </div>
+        <div>
+            <form method='post' enctype="multipart/form-data" >
+            {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="form-label">Time</label>
+                        <input class="form-control" name="time" type="date" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Intro</label>
+                        <select name="intro" class="form-control">
+                            {% for object in base %}
+                            <option value="{{object.title}}">{{object.title}}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- <input class="form-control" name="intro" type="text" required> -->
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Upload your ringtone</label>
+                        <input class="form-control" name="customer" type="file" required>
+                    </div>
+
+                </div>
+                <div>
+                <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<section>
+    <div class="pt-4">
+       <table id="customers">
+            <tr>
+                <th>Time</th>
+                <th>INTRO</th>
+                <th>Ring Tone</th>
+            </tr>
+            <tr>
+                {% for item in third %}
+                <td>{{item.time}}</td>
+                <td><br>{{item.intro}}</td>
+                <td><a class="btn btn-sm btn-primary" href="/media/{{item.customer}}" target="_blank">View</a>
+                </td>
+                {% empty %}
+                No data found
+                {% endfor %}
+            </tr>
+           
+        </table>
+    </div>
+</section>
+
+
+
+
+
+{% endblock content %}
